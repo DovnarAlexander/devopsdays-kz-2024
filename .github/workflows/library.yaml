@@ -10,20 +10,17 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Configure Git
+      - uses: azure/setup-helm@v4
+
+      - name: Configure Git and Helm
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm
-        uses: azure/setup-helm@v4
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          helm repo add helmet https://charts.companyinfo.dev
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
