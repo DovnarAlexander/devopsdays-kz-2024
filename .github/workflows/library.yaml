@@ -3,6 +3,8 @@ name: Release Charts
 
 on:
   push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+    paths: ['charts/**']
 
 jobs:
   release:
@@ -10,7 +12,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -24,5 +26,7 @@ jobs:
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
+        with:
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
