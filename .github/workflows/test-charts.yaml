@@ -1,8 +1,10 @@
 ---
-name: Test chart (Library)
+name: Test charts
 
 on:
   push:
+    paths-ignore: ['charts/demo-library/**']
+    paths: ['charts/**']
 
 jobs:
   test:
