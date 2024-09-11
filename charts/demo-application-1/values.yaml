@@ -1,5 +1,4 @@
 ---
-fullnameOverride: demo-application-1
 image:
   registry: docker.io
   repository: nginx
