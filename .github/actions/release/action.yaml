@@ -1,0 +1,54 @@
+---
+
+name: Chart release
+description: Chart release
+inputs:
+  chart:
+    description: Helm chart name
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: ${{ github.ref_name }}
+
+    - name: Get next version
+      id: tag
+      uses: IIlyichev/github-tag-action@v6.3
+      with:
+        github_token: ${{ github.token }}
+        tag_prefix: ${{ inputs.chart }}-
+        tag_filter: ${{ inputs.chart }}-
+        dry_run: true
+
+    - uses: azure/setup-helm@v4
+
+    - name: Prepare for the release
+      env:
+        TAG: ${{ steps.tag.outputs.new_tag }}
+        REPLACE: ${{ inputs.chart }}-
+      working-directory: charts/${{ inputs.chart }}
+      shell: bash
+      run: |
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        helm repo add helmet https://charts.companyinfo.dev
+        helm repo add demo https://alex-dovnar.in/devopsdays-kz-2024
+        sed -i "s#^version:.*#version: ${TAG/#$REPLACE}#g" Chart.yaml
+        cat Chart.yaml
+
+    - name: Commit file to branch
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "Bumped up version [skip ci]"
+        branch: main
+        commit_user_name: ${{ github.actor }}
+        commit_user_email: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
+
+    - name: Run chart-releaser
+      uses: helm/chart-releaser-action@v1.6.0
+      with:
+        skip_existing: true
