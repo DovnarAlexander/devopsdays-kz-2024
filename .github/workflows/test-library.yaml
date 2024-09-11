@@ -21,7 +21,6 @@ jobs:
         run: |
           export CT_CONFIG_DIR=${{ github.workspace }}/tests
           echo "CT_CONFIG_DIR=${CT_CONFIG_DIR}" >> "${GITHUB_ENV}"
-          helm repo add helmet https://charts.companyinfo.dev
           ct lint charts/demo-library
 
       - name: Run lint for all Charts
@@ -31,4 +30,4 @@ jobs:
         uses: helm/kind-action@v1.10.0
 
       - name: Run chart-testing
-        run: ct install --all
+        run: ct install --all --excluded-charts demo-library

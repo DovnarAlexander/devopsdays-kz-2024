@@ -27,9 +27,7 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
-        run: |
-          helm repo add helmet https://charts.companyinfo.dev
-          ct lint
+        run: ct lint
 
       - name: Create kind cluster (if there were changes)
         if: steps.list-changed.outputs.changed

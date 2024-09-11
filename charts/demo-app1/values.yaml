@@ -9,3 +9,7 @@ resources:
     memory: 128Mi
   limits:
     memory: 128Mi
+ports:
+  - name: http
+    containerPort: 80
+    protocol: TCP
