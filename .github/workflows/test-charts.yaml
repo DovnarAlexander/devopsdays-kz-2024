@@ -1,35 +1,22 @@
 ---
-name: Test chart (Library)
-
+name: Test application charts
 on:
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'charts/**'
+      - '!charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
   push:
+    branches: ['main']
+    paths:
+      - 'charts/**'
+      - '!charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CT_CONFIG_DIR: ${{ github.workspace }}/tests
     steps:
       - uses: actions/checkout@v4
-      - uses: azure/setup-helm@v4
-      - uses: helm/chart-testing-action@v2.6.1
-
-      - name: Run chart-testing (list-changed)
-        id: list-changed
-        run: |
-          changed=$(ct list-changed)
-          if [[ -n "$changed" ]]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Run chart-testing (lint)
-        run: |
-          helm repo add helmet https://charts.companyinfo.dev
-          ct lint
-
-      - name: Create kind cluster (if there were changes)
-        if: steps.list-changed.outputs.changed
-        uses: helm/kind-action@v1.10.0
-
-      - name: Run chart-testing  (if there were changes)
-        run: ct install --debug
+      - uses: ./.github/actions/ct

@@ -1,32 +1,23 @@
 ---
 name: Test Library chart
-
 on:
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
   push:
-  # paths:
-  #   - 'charts/**'
-  #   - '.github/workflows/test-library.yaml'
+    branches: ['main']
+    paths:
+      - 'charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CT_CONFIG_DIR: ${{ github.workspace }}/tests
     steps:
       - uses: actions/checkout@v4
-      - uses: azure/setup-helm@v4
-      - uses: helm/chart-testing-action@v2.6.1
-
-      - name: Run lint for Library
-        run: |
-          helm repo add helmet https://charts.companyinfo.dev
-          ct lint charts/demo-library
-
-      - name: Run lint for all Charts
-        run: ct lint --all
-
-      - name: Create kind cluster
-        uses: helm/kind-action@v1.10.0
-
-      - name: Run chart-testing
-        run: ct install --all
+      - uses: ./.github/actions/ct
+        with:
+          lint_args: --all
+          install_args: --all
