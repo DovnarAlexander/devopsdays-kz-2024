@@ -1,0 +1,24 @@
+{{- define "library.test_service" -}}
+{{- $fullName := (include "common.names.fullname" .) -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ $fullName }}-test-service"
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.labels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.labels "context" $ ) | nindent 4 }}
+    {{- end }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  containers:
+    - name: wget
+      image: busybox:1.36.1
+      command: ['wget']
+      args: ['{{ $fullName }}:{{ (index .Values.service.ports 0).port }}']
+  restartPolicy: Never
+{{- end }}

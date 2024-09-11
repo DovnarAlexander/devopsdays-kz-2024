@@ -1,0 +1,4 @@
+# https://github.com/companyinfo/helm-charts/blob/main/charts/helmet/templates/_NOTES.txt
+{{- define "library.notes" -}}
+{{ include "helmet.notes" . }}
+{{- end }}

@@ -1,0 +1,4 @@
+# https://github.com/companyinfo/helm-charts/blob/main/charts/helmet/templates/_service.yaml
+{{- define "library.service" -}}
+{{ include "helmet.service" . }}
+{{- end }}

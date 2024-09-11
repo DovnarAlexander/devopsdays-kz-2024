@@ -1,0 +1,4 @@
+# https://github.com/companyinfo/helm-charts/blob/main/charts/helmet/templates/_deployment.yaml
+{{- define "library.deployment" -}}
+{{ include "helmet.deployment" . }}
+{{- end }}
