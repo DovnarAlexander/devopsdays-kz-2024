@@ -1,5 +1,5 @@
 ---
-name: Release Library Charts
+name: Release Library Chart
 on:
   push:
     tags: ['v[0-9]+.[0-9]+.[0-9]+']
