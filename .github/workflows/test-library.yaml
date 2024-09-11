@@ -1,11 +1,16 @@
 ---
 name: Test Library chart
-
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
   push:
-  # paths:
-  #   - 'charts/**'
-  #   - '.github/workflows/test-library.yaml'
+    branches: [main]
+    paths:
+      - 'charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
 
 jobs:
   test:
