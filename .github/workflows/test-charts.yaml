@@ -13,6 +13,8 @@ jobs:
       CT_CONFIG_DIR: ${{ github.workspace }}/tests
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: azure/setup-helm@v4
       - uses: helm/chart-testing-action@v2.6.1
 

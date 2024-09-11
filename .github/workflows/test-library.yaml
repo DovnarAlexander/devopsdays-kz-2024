@@ -10,10 +10,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CT_CONFIG_DIR: 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: azure/setup-helm@v4
       - uses: helm/chart-testing-action@v2.6.1
 
