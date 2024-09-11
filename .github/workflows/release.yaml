@@ -3,7 +3,7 @@ name: Create new tag
 on:
   push:
     branches:
-      - main
+      - aasdasdas # TODO: Fix
 
 jobs:
   release:

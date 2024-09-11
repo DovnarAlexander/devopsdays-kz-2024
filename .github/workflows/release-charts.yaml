@@ -13,12 +13,13 @@ jobs:
         with:
           fetch-depth: 0
       - id: changes
-        uses: simbo/changes-between-tags-action@v1
+        uses: tj-actions/changed-files@v45
+        with:
+          files: charts/**
 
       - name: Output Data
         run: |
-          echo "tag: ${{ steps.changes.outputs.tag }}"
-          echo "changes: ${{ steps.changes.outputs.changes }}" 
+          echo "changes: ${{ steps.changed-files-specific.outputs.all_changed_files }}" 
 
 
 #   release:
