@@ -72,7 +72,7 @@ exports:
     image:
       registry: docker.io
       repository: ""
-      tag: latest
+      tag: ""
       digest: ""
 
       ## Specify a imagePullPolicy
