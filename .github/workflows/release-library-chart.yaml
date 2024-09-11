@@ -65,6 +65,8 @@ jobs:
     needs: release
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: azure/setup-helm@v4
       - uses: tj-actions/glob@v22
         id: glob
@@ -88,6 +90,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
+          base: main
           commit-message: Updated library chart (${{ github.ref_name }})
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
