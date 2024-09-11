@@ -7,12 +7,6 @@ on:
       - 'charts/**'
       - '!charts/demo-library/**'
       - '.github/workflows/test-library.yaml'
-  push:
-    branches: ['main']
-    paths:
-      - 'charts/**'
-      - '!charts/demo-library/**'
-      - '.github/workflows/test-library.yaml'
 
 jobs:
   test:
