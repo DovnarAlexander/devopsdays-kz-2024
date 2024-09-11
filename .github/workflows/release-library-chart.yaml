@@ -49,8 +49,8 @@ jobs:
         with:
           commit_message: "Bumped up version [skip ci]"
           branch: main
-          commit_user_name: Naviteq Automation
-          commit_user_email: naviteq-automation@naviteq.io
+          commit_user_name: ${{ github.actor }}
+          commit_user_email: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0

@@ -58,7 +58,7 @@ jobs:
         with:
           commit_message: "Bumped up version [skip ci]"
           branch: main
-          author: ${{ github.actor }}
+          commit_user_name: ${{ github.actor }}
           commit_user_email: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
 
       - name: Run chart-releaser
