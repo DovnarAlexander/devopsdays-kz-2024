@@ -1,0 +1,11 @@
+# helm upgrade --install argocd -n argo --create-namespace oci://ghcr.io/argoproj/argo-helm/argo-cd --values values.yaml
+---
+domain: localhost
+server:
+  ingress:
+    enabled: true
+    hostname: localhost
+    ingressClassName: nginx
+configs:
+  params:
+    server.insecure: "true"
