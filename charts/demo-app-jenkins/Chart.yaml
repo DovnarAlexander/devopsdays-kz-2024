@@ -3,7 +3,7 @@ apiVersion: v2
 name: demo-app-jenkins
 description: Demo Jenkins
 type: application
-version: 0.0.4
+version: 0.0.5
 appVersion: "2.476"
 dependencies:
   - name: demo-library
