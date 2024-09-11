@@ -10,6 +10,8 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    env:
+      CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,9 +25,21 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           helm repo add helmet https://charts.companyinfo.dev
 
+      - name: Get list of changed charts
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          skip_upload: true
+
+      - name: Update versions
+        working-directory: ${{ inputs.CHART_LOCATION }}
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          sed -i "s#^version:.*#version: ${VERSION/v/}#g" Chart.yaml
+          cat Chart.yaml
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
           skip_existing: true
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          mark_as_latest: true
