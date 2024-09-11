@@ -2,8 +2,7 @@
 name: Create new tag
 on:
   push:
-    branches:
-      - aasdasdas # TODO: Fix
+    branches: ['main']
 
 jobs:
   release:
