@@ -3,15 +3,15 @@ name: Test application charts
 on:
   pull_request:
     branches: ['main']
-    ignore-paths: ['charts/demo-library/**']
     paths:
       - 'charts/**'
+      - '!charts/demo-library/**'
       - '.github/workflows/test-library.yaml'
   push:
     branches: ['main']
-    ignore-paths: ['charts/demo-library/**']
     paths:
       - 'charts/**'
+      - '!charts/demo-library/**'
       - '.github/workflows/test-library.yaml'
 
 jobs:
