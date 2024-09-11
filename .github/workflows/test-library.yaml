@@ -11,7 +11,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CT_CONFIG_DIR: ./tests
+      CT_CONFIG_DIR: 
     steps:
       - uses: actions/checkout@v4
       - uses: azure/setup-helm@v4
@@ -19,8 +19,8 @@ jobs:
 
       - name: Run lint for Library
         run: |
-          echo $CT_CONFIG_DIR
-          cat $CT_CONFIG_DIR/ct.yaml
+          export CT_CONFIG_DIR=${{ github.workspace }}/tests
+          echo "CT_CONFIG_DIR=${CT_CONFIG_DIR}" >> "${GITHUB_ENV}"
           helm repo add helmet https://charts.companyinfo.dev
           ct lint charts/demo-library
 
