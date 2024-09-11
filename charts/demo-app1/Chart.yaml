@@ -3,7 +3,7 @@ apiVersion: v2
 name: demo-application-1
 description: Demo application 1
 type: application
-version: 0.0.8
+version: 0.0.9
 appVersion: 0.0.1
 dependencies:
   - name: demo-library
