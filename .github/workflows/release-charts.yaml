@@ -2,44 +2,54 @@
 name: Release Charts
 on:
   push:
-    tags: ['v[0-9]+.[0-9]+.[0-9]+']
-    paths: ['charts/**']
+    # tags: ['v[0-9]+.[0-9]+.[0-9]+']
+    # paths: ['charts/**']
 
 jobs:
-  release:
-    permissions:
-      contents: write
+  prepare:
     runs-on: ubuntu-latest
-    env:
-      CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - id: changes
+        uses: simbo/changes-between-tags-action@v1
 
-      - uses: azure/setup-helm@v4
-
-      - name: Configure Git and Helm
+      - name: Output Data
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          helm repo add helmet https://charts.companyinfo.dev
+          echo "tag: ${{ steps.changes.outputs.tag }}"
+          echo "changes: ${{ steps.changes.outputs.changes }}" 
 
-      - name: Get list of changed charts
-        uses: helm/chart-releaser-action@v1.6.0
-        with:
-          skip_upload: true
 
-      - name: Update versions
-        working-directory: ${{ inputs.CHART_LOCATION }}
-        env:
-          VERSION: ${{ github.ref_name }}
-        run: |
-          sed -i "s#^version:.*#version: ${VERSION/v/}#g" Chart.yaml
-          cat Chart.yaml
+#   release:
+#     permissions:
+#       contents: write
+#     runs-on: ubuntu-latest
+#     needs: prepare
+#     env:
+#       CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
-        with:
-          skip_existing: true
-          mark_as_latest: true
+#       - uses: azure/setup-helm@v4
+
+#       - name: Configure Git and Helm
+#         run: |
+#           git config user.name "$GITHUB_ACTOR"
+#           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+#           helm repo add helmet https://charts.companyinfo.dev
+# rsions
+#         working-directory: ${{ inputs.CHART_LOCATION }}
+#         env:
+#           VERSION: ${{ github.ref_name }}
+#         run: |
+#           sed -i "s#^version:.*#version: ${VERSION/v/}#g" Chart.yaml
+#           cat Chart.yaml
+
+#       - name: Run chart-releaser
+#         uses: helm/chart-releaser-action@v1.6.0
+#         with:
+#           skip_existing: true
+#           mark_as_latest: true
