@@ -3,7 +3,7 @@ apiVersion: v2
 name: demo-library
 description: Demo library helm chart
 type: library
-version: 0.0.2
+version: 0.0.4
 dependencies:
   - name: helmet
     version: 0.11.0
