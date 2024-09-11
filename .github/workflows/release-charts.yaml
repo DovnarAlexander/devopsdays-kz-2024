@@ -3,9 +3,6 @@ name: Release Charts
 on:
   push:
     tags: ['v[0-9]+.[0-9]+.[0-9]+']
-    paths:
-      - 'charts/**'
-      - '!charts/demo-library/**'
 
 jobs:
   prepare:
@@ -22,6 +19,7 @@ jobs:
           matrix: true
           dir_names: true
           files: charts/**
+          files_ignore: charts/demo-library/**
 
   release:
     permissions:

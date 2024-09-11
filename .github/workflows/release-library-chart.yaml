@@ -3,13 +3,27 @@ name: Release Library Charts
 on:
   push:
     tags: ['v[0-9]+.[0-9]+.[0-9]+']
-    paths: ['!charts/demo-library/**']
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changes.outputs.all_changed_files_count }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: changes
+        uses: tj-actions/changed-files@v45
+        with:
+          files: charts/demo-library/**
+
   release:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    needs: prepare
+    if: needs.prepare.outputs.changed != 0
     env:
       CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     steps:
