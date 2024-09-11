@@ -1,15 +1,5 @@
 ---
-fullnameOverride: demo-application-1
+fullnameOverride: demo-jenkins
 image:
   registry: docker.io
-  repository: nginx
-resources:
-  requests:
-    cpu: 20m
-    memory: 128Mi
-  limits:
-    memory: 128Mi
-ports:
-  - name: http
-    containerPort: 80
-    protocol: TCP
+  repository: jenkins
