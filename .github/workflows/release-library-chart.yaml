@@ -44,19 +44,19 @@ jobs:
           sed -i "s#^version:.*#version: ${VERSION/v/}#g" Chart.yaml
           cat Chart.yaml
 
-      # - name: Commit file to branch
-      #   uses: stefanzweifel/git-auto-commit-action@v4
-      #   with:
-      #     commit_message: "Bumped up version [skip ci]"
-      #     branch: main
-      #     commit_user_name: Naviteq Automation
-      #     commit_user_email: naviteq-automation@naviteq.io
+      - name: Commit file to branch
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Bumped up version [skip ci]"
+          branch: main
+          commit_user_name: Naviteq Automation
+          commit_user_email: naviteq-automation@naviteq.io
 
-      # - name: Run chart-releaser
-      #   uses: helm/chart-releaser-action@v1.6.0
-      #   with:
-      #     skip_existing: true
-      #     mark_as_latest: true
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          skip_existing: true
+          mark_as_latest: true
 
   dependencies-update:
     permissions:
