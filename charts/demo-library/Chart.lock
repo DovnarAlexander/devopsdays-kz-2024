@@ -2,5 +2,5 @@ dependencies:
 - name: helmet
   repository: https://charts.companyinfo.dev
   version: 0.11.0
-digest: sha256:437d6045e3fc5d151c78587c523d37701a177cc1fa0db1a954bf0be2282adf27
-generated: "2024-09-09T13:26:51.901182+03:00"
+digest: sha256:de23f3ecea7a362137813045d057a7a1f2cc4246c1f2d883ab4c69a1b33f7675
+generated: "2024-09-11T12:31:36.964965+03:00"
