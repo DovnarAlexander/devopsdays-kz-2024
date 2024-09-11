@@ -1,38 +1,15 @@
 ---
-name: Release Charts
+name: Release Library Charts
 on:
   push:
     tags: ['v[0-9]+.[0-9]+.[0-9]+']
-    paths:
-      - 'charts/**'
-      - '!charts/demo-library/**'
+    paths: ['!charts/demo-library/**']
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      changes: ${{ steps.changes.outputs.all_changed_files }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - id: changes
-        uses: tj-actions/changed-files@v45
-        with:
-          matrix: true
-          dir_names: true
-          files: charts/**
-
   release:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    needs: [prepare]
-    strategy:
-      matrix: 
-        chart_folder: ${{ fromJSON(needs.prepare.outputs.changes) }}
-      max-parallel: 1
-      fail-fast: false
     env:
       CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
     steps:
@@ -45,10 +22,11 @@ jobs:
       - name: Prepare for the release
         env:
           VERSION: ${{ github.ref_name }}
-        working-directory: ${{ matrix.chart_folder }}
+        working-directory: charts/demo-library
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          helm repo add helmet https://charts.companyinfo.dev
           sed -i "s#^version:.*#version: ${VERSION/v/}#g" Chart.yaml
           cat Chart.yaml
 
