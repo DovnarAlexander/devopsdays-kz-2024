@@ -11,7 +11,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CT_CONFIG_DIR: ${{ github.workspace }}/tests
+      CT_CONFIG_DIR: ./tests
     steps:
       - uses: actions/checkout@v4
       - uses: azure/setup-helm@v4
