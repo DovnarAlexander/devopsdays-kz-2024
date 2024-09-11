@@ -22,3 +22,4 @@ spec:
       args: ['{{ $fullName }}:{{ (index .Values.service.ports 0).port }}']
   restartPolicy: Never
 {{- end }}
+

@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: main
       - uses: azure/setup-helm@v4
       - uses: tj-actions/glob@v22
         id: glob
@@ -91,16 +91,15 @@ jobs:
         with:
           token: ${{ github.token }}
           base: main
+          branch: update/library-dependency
+          branch-suffix: timestamp
           commit-message: Updated library chart (${{ github.ref_name }})
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          branch: update/library-dependency
-          delete-branch: true
           title: 'feature(auto): Updated dependency'
           labels: |
             report
             automated pr
           assignees: DovnarAlexander
           reviewers: DovnarAlexander
-          draft: false
+          add-paths: charts/
