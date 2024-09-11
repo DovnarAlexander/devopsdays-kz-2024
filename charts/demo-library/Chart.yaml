@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: demo-library
-description: Demo library helm chart
+description: Demo library Helm chart
 type: library
 version: 0.0.1
 dependencies:
