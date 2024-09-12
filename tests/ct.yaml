@@ -1,0 +1,11 @@
+# See https://github.com/helm/chart-testing#configuration
+---
+remote: origin
+chart-dirs: [charts]
+helm-extra-args: --timeout=300s
+kubectl-timeout: 300s
+target-branch: main
+validate-maintainers: false
+check-version-increment: false
+chart-repos:
+  - demo=https://alex-dovnar.in/devopsdays-kz-2024
