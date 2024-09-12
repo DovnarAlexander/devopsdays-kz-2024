@@ -12,3 +12,10 @@ ports:
   - name: http
     containerPort: 80
     protocol: TCP
+
+readinessProbe: &httpProbe
+  enabled: true
+  httpGet:
+    path: /
+    port: http
+livenessProbe: *httpProbe
