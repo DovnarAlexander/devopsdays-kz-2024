@@ -20,6 +20,14 @@ jobs:
       - uses: ./.github/actions/release
         with:
           chart: demo-library
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -r assets _site/
+      - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4
 
   dependencies-update:
