@@ -10,8 +10,6 @@ jobs:
   release:
     permissions:
       contents: write
-      pages: write
-      id-token: write
     runs-on: ubuntu-latest
     env:
       CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -20,6 +18,15 @@ jobs:
       - uses: ./.github/actions/release
         with:
           chart: demo-library
+
+  gh-pages:
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
       - uses: actions/checkout@v4
         with:
           ref: gh-pages
@@ -35,7 +42,9 @@ jobs:
       contents: write
       pull-requests: write
     runs-on: ubuntu-latest
-    needs: release
+    needs:
+      - release
+      - gh-pages
     steps:
       - uses: actions/checkout@v4
         with:
