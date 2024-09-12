@@ -1,6 +1,6 @@
 dependencies:
 - name: demo-library
   repository: file://../demo-library
-  version: 0.1.1
-digest: sha256:e73f05b123f8728dbc8479e59ea118420a008e3fede052b35d2278069e010733
-generated: "2024-09-12T18:55:29.246942+03:00"
+  version: 0.1.2
+digest: sha256:cdefec5fca94fdd7661ff46eabaf11b6bb74176dafc87f0570997a3ccec273fe
+generated: "2024-09-12T19:00:47.891337+03:00"

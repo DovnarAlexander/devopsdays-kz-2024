@@ -18,6 +18,7 @@ jobs:
       - uses: ./.github/actions/release
         with:
           chart: demo-library
+      - uses: actions/deploy-pages@v4
 
   dependencies-update:
     permissions:
