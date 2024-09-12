@@ -32,8 +32,7 @@ jobs:
           ref: gh-pages
       - run: |
           mkdir -p _site
-          cp index.html _site/
-          cp -r assets _site/
+          cp index.yaml _site/
       - uses: actions/upload-pages-artifact@v3
       - uses: actions/deploy-pages@v4
 
