@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ${ENV}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${ENV}-sample
+  # А можем передать NS через переменную окружения
+  namespace: ${ENV}
+spec:
+  selector:
+    matchLabels:
+      app: hello
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: mendhak/http-https-echo:34
+        ports:
+          - containerPort: 8080
+            name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${ENV}-sample
+  # А можем передать NS через переменную окружения
+  namespace: ${ENV}
+spec:
+  type: ClusterIP
+  selector:
+    app: hello
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${ENV}-sample
+  # А можем передать NS через переменную окружения
+  namespace: ${ENV}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/${ENV}"
+        backend:
+          service:
+            name: ${ENV}-sample
+            port:
+              number: 80
