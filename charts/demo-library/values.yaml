@@ -38,7 +38,8 @@ exports:
 
     ## @param labels Additional labels to be added to the App Deployment or Statefulset. Evaluated as a template
     ##
-    labels: {}
+    labels:
+      project: demo
 
     ## @param commonLabels Labels to be added to all deployed resources
     ##
@@ -613,6 +614,10 @@ exports:
           protocol: TCP
           port: 80
           targetPort: http
+
+      ## @param service.test for helm tests
+      ##
+      test: /
 
       ## @param service.sessionAffinity Control where client requests go, to the same pod or round-robin
       ## Values: ClientIP or None

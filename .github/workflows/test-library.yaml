@@ -13,6 +13,3 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/ct
-        with:
-          lint_args: --all
-          install_args: --all

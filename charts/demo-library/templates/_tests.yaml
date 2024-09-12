@@ -19,6 +19,6 @@ spec:
     - name: wget
       image: busybox:1.36.1
       command: ['wget']
-      args: ['{{ $fullName }}:{{ (index .Values.service.ports 0).port }}']
+      args: ['{{ $fullName }}:{{ (index .Values.service.ports 0).port }}{{ .Values.service.test }}']
   restartPolicy: Never
 {{- end }}
