@@ -42,3 +42,20 @@ jobs:
       - uses: ./.github/actions/release
         with:
           chart: ${{ matrix.chart }}
+
+  gh-pages:
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - run: |
+          mkdir -p _site
+          cp index.yaml _site/
+      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/deploy-pages@v4
