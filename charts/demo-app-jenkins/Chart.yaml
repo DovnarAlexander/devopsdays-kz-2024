@@ -7,7 +7,7 @@ version: 0.0.5
 appVersion: "2.476"
 dependencies:
   - name: demo-library
-    version: "~>0.0.1"
+    version: "~>0.1"
     repository: https://alex-dovnar.in/devopsdays-kz-2024
     import-values:
       - defaults
