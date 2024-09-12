@@ -35,7 +35,7 @@ runs:
       run: |
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        helm repo add helmet https://charts.companyinfo.dev
+        helm repo add bitnami oci://registry-1.docker.io/bitnamicharts
         helm repo add demo https://alex-dovnar.in/devopsdays-kz-2024
         sed -i "s#^version:.*#version: ${TAG/#$REPLACE}#g" Chart.yaml
         cat Chart.yaml

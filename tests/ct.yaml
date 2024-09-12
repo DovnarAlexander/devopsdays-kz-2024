@@ -8,5 +8,4 @@ target-branch: main
 validate-maintainers: false
 check-version-increment: false
 chart-repos:
-  - helmet=https://charts.companyinfo.dev
   - demo=https://alex-dovnar.in/devopsdays-kz-2024
