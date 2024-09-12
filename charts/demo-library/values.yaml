@@ -1,7 +1,6 @@
 ---
 exports:
   defaults:
-    # Helmet part: https://github.com/companyinfo/helm-charts/blob/main/charts/helmet/values.yaml
     ## @section Global parameters
     ## Global Docker image parameters
     ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
@@ -11,15 +10,6 @@ exports:
     ## @param global.imagePullSecrets Global Docker registry secret names as an array
     ## @param global.storageClass Global StorageClass for Persistent Volume(s)
     ##
-    global:
-      imageRegistry: ""
-      ## E.g.
-      ## imagePullSecrets:
-      ##   - myRegistryKeySecretName
-      ##
-      imagePullSecrets: []
-      storageClass: ""
-
     ## @section Common parameters
 
     ## @param kubeVersion Force target Kubernetes version (using Helm capabilities if not set)
@@ -58,9 +48,9 @@ exports:
     ##
     commonAnnotations: {}
 
-    ## @section Helmet parameters
+    ## @section Library parameters
 
-    ## Helmet (App) image version
+    ## Library (App) image version
     ## ref: https://kubernetes.io/docs/concepts/containers/images
     ## @param image.registry Image registry
     ## @param image.repository Image repository

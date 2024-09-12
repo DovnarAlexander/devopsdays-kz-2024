@@ -5,8 +5,6 @@ description: Demo library helm chart
 type: library
 version: 0.0.5
 dependencies:
-  - name: helmet
-    version: 0.11.0
-    repository: https://charts.companyinfo.dev
-    import-values:
-      - defaults
+  - name: common
+    version: "2.22.0"
+    repository: oci://registry-1.docker.io/bitnamicharts
