@@ -1,15 +1,27 @@
 ---
-fullnameOverride: demo-jenkins
 image:
-  registry: docker.io
+  registry: jenkins
   repository: jenkins
 resources:
   requests:
     cpu: 20m
-    memory: 128Mi
+    memory: 512Mi
   limits:
-    memory: 128Mi
+    memory: 512Mi
 ports:
   - name: http
     containerPort: 8080
     protocol: TCP
+
+service:
+  test: /login
+
+readinessProbe: &httpProbe
+  enabled: true
+  httpGet:
+    path: /login
+    port: http
+livenessProbe: *httpProbe
+startupProbe:
+  <: *httpProbe
+  initialDelaySeconds: 60
