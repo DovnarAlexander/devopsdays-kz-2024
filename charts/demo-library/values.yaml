@@ -39,7 +39,7 @@ exports:
     ## @param labels Additional labels to be added to the App Deployment or Statefulset. Evaluated as a template
     ##
     labels:
-      project: demo-application
+      project: demo
 
     ## @param commonLabels Labels to be added to all deployed resources
     ##
