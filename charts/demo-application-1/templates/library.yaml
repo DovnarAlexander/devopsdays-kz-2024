@@ -1,0 +1,3 @@
+{{ include "library.deployment" . }}
+{{ include "library.service" . }}
+{{ include "library.ingress" . }}
