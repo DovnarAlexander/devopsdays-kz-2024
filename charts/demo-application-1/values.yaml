@@ -1,4 +1,5 @@
 ---
+fullnameOverride: demo-jenkins
 image:
   registry: docker.io
   repository: nginx

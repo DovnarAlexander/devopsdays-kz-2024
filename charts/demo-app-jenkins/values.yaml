@@ -1,4 +1,5 @@
 ---
+fullnameOverride: demo-app-1
 image:
   registry: jenkins
   repository: jenkins
