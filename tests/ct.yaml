@@ -2,8 +2,8 @@
 ---
 remote: origin
 chart-dirs: [charts]
-helm-extra-args: --timeout=300s
-kubectl-timeout: 300s
+helm-extra-args: --timeout=600s
+kubectl-timeout: 600s
 target-branch: main
 validate-maintainers: false
 check-version-increment: false

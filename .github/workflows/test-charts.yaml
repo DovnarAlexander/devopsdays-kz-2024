@@ -14,21 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/ct
-  # scan:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: aquasec/trivy:0.55.1
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Checkov GitHub Action
-  #       uses: bridgecrewio/checkov-action@v12
-  #       with:
-  #         directory: charts
-  #         output_format: cli,sarif
-  #         output_file_path: console,results.sarif
+  scan:
+    runs-on: ubuntu-latest
+    container:
+      image: aquasec/trivy:0.55.1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: charts
+          output_format: cli,sarif
+          output_file_path: console,results.sarif
         
-  #     - name: Upload SARIF file
-  #       uses: github/codeql-action/upload-sarif@v2
-  #       if: success() || failure()
-  #       with:
-  #         sarif_file: results.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: results.sarif
