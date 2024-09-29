@@ -1,5 +1,5 @@
 ---
-fullnameOverride: demo-jenkins
+fullnameOverride: demo-app-1
 image:
   registry: docker.io
   repository: nginx
@@ -8,6 +8,7 @@ resources:
     cpu: 20m
     memory: 128Mi
   limits:
+    cpu: 200m
     memory: 128Mi
 ports:
   - name: http
@@ -20,3 +21,30 @@ readinessProbe: &httpProbe
     path: /
     port: http
 livenessProbe: *httpProbe
+# Security
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 101
+  runAsGroup: 101
+  sysctls:
+    - name: net.ipv4.ip_unprivileged_port_start
+      value: "0"
+containerSecurityContext:
+  privileged: False
+  capabilities:
+    drop:
+      - ALL
+      - NET_RAW
+  seccompProfile:
+    type: RuntimeDefault
+  allowPrivilegeEscalation: false
+extraVolumes:
+  - name: cache
+    emptyDir: {}
+  - name: run
+    emptyDir: {}
+extraVolumeMounts:
+  - name: cache
+    mountPath: /var/cache/nginx
+  - name: run
+    mountPath: /var/run

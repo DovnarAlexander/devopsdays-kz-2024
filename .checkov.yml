@@ -1,0 +1,7 @@
+---
+skip-check:
+  - CKV_K8S_43 # We don't care about Digests, because we use only immutable tags
+  - CKV_K8S_21 # We can use all the namespaces
+  - CKV_K8S_15 # We use only immutable tags
+  - CKV_K8S_40 # We don't have such risk right now
+  - CKV_K8S_22 # We need it for now

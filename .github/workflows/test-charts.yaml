@@ -16,8 +16,6 @@ jobs:
       - uses: ./.github/actions/ct
   scan:
     runs-on: ubuntu-latest
-    container:
-      image: aquasec/trivy:0.55.1
     steps:
       - uses: actions/checkout@v4
       - name: Checkov GitHub Action

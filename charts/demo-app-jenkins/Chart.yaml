@@ -8,6 +8,6 @@ appVersion: "2.476"
 dependencies:
   - name: demo-library
     version: "~>0"
-    repository: https://alex-dovnar.in/devopsdays-kz-2024
+    repository: file://../demo-library
     import-values:
       - defaults

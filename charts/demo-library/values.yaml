@@ -214,7 +214,7 @@ exports:
     ## @param podSecurityContext.fsGroup Set APP pod's Security Context fsGroup
     ##
     podSecurityContext:
-      enabled: false
+      enabled: true
       fsGroup: 0
 
     ## Configure Container Security Context (only main container)
@@ -224,7 +224,7 @@ exports:
     ## @param containerSecurityContext.runAsNonRoot Set APP container's Security Context runAsNonRoot
     ##
     containerSecurityContext:
-      enabled: false
+      enabled: true
       runAsUser: 1001
       runAsNonRoot: true
 

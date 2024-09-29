@@ -161,4 +161,5 @@ spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- end }}
       serviceAccountName: {{ include "library.serviceAccountName" . }}
+      automountServiceAccountToken: false
 {{- end -}}

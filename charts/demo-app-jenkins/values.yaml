@@ -1,5 +1,5 @@
 ---
-fullnameOverride: demo-app-1
+fullnameOverride: demo-jenkins
 image:
   registry: jenkins
   repository: jenkins
@@ -8,6 +8,7 @@ resources:
     cpu: 30m
     memory: 512Mi
   limits:
+    cpu: "1"
     memory: 512Mi
 ports:
   - name: http
@@ -26,3 +27,14 @@ livenessProbe: *httpProbe
 startupProbe:
   <: *httpProbe
   initialDelaySeconds: 60
+# Security
+containerSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+  runAsUser: 1000
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - NET_RAW
+      - ALL
