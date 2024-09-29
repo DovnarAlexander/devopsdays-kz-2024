@@ -1,0 +1,37 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-applications-dev
+  namespace: argo
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/DovnarAlexander/devopsdays-kz-2024.git
+      revision: HEAD
+      directories:
+      - path: charts/demo-application-*
+      - path: charts/demo-app-*
+  template:
+    metadata:
+      name: '{{.path.basename}}-dev'
+    spec:
+      project: default
+      sources:
+      - chart: '{{.path.basename}}'
+        repoURL: https://alex-dovnar.in/devopsdays-kz-2024
+        targetRevision: "~>0"
+      - repoURL: https://github.com/DovnarAlexander/devopsdays-kz-2024.git
+        targetRevision: main
+        ref: values
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: development
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
