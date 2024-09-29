@@ -1,0 +1,13 @@
+{{- define "library.app" -}}
+
+{{- if .Values.image.repository }}
+{{ include "library.deployment" . }}
+{{- end }}
+
+{{ include "library.ingress" . }}
+
+{{- if and .Values.ports .Values.service.ports }}
+{{ include "library.service" . }}
+{{- end }}
+
+{{- end }}

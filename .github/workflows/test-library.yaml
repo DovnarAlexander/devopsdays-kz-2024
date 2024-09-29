@@ -1,0 +1,15 @@
+---
+name: Test Library chart
+on:
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'charts/demo-library/**'
+      - '.github/workflows/test-library.yaml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/ct
