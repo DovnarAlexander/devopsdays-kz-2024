@@ -1,0 +1,37 @@
+---
+
+name: Chart testing
+description: Executes chart testing within specified constraints
+inputs:
+  lint_args:
+    description: Additional arguments for lint command
+    required: false
+  install_args:
+    description: Additional arguments for install command
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - uses: azure/setup-helm@v4
+    - uses: helm/chart-testing-action@v2.6.1
+
+    - name: Prepare configuration
+      run: |
+        export CT_CONFIG_DIR=${{ github.workspace }}/tests
+        echo "CT_CONFIG_DIR=${CT_CONFIG_DIR}" >> "${GITHUB_ENV}"
+      shell: bash
+
+    - name: Run lint
+      run: ct lint ${{ inputs.lint_args }}
+      shell: bash
+
+    - name: Create kind cluster
+      uses: helm/kind-action@v1.10.0
+
+    - name: Run chart-testing
+      run: ct install ${{ inputs.install_args }} --excluded-charts demo-library
+      shell: bash
