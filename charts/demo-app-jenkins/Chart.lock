@@ -1,0 +1,6 @@
+dependencies:
+- name: demo-library
+  repository: https://alex-dovnar.in/devopsdays-kz-2024
+  version: 0.0.1
+digest: sha256:11cb2a306e6d9ffa7e77b9e53ec35a1cbe44c8ec8655e94f50598dfa48249cf8
+generated: "2024-09-12T21:52:48.845213+03:00"

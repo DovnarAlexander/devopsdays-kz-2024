@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+name: demo-app-jenkins
+description: Demo Jenkins
+type: application
+version: 0.0.1
+appVersion: "2.476"
+dependencies:
+  - name: demo-library
+    version: "~>0"
+    repository: https://alex-dovnar.in/devopsdays-kz-2024
+    import-values:
+      - defaults
