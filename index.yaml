@@ -52,6 +52,22 @@ entries:
   demo-application-1:
   - apiVersion: v2
     appVersion: 1.27.1
+    created: "2024-10-04T10:18:42.601386919Z"
+    dependencies:
+    - import-values:
+      - defaults
+      name: demo-library
+      repository: https://alex-dovnar.in/devopsdays-kz-2024
+      version: ~>0
+    description: Demo application 1
+    digest: dd97fe03b49979176ca7ce567f61acae0030491215df0d4e5cc2a02dcfde6783
+    name: demo-application-1
+    type: application
+    urls:
+    - https://github.com/DovnarAlexander/devopsdays-kz-2024/releases/download/demo-application-1-0.0.2/demo-application-1-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 1.27.1
     created: "2024-10-04T07:48:52.165945891Z"
     dependencies:
     - import-values:
@@ -93,4 +109,4 @@ entries:
     urls:
     - https://github.com/DovnarAlexander/devopsdays-kz-2024/releases/download/demo-library-0.0.1/demo-library-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-04T10:18:19.570804392Z"
+generated: "2024-10-04T10:18:42.601401756Z"
