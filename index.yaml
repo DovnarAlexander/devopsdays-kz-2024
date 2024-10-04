@@ -1,5 +1,22 @@
 apiVersion: v1
 entries:
+  demo-app-jenkins:
+  - apiVersion: v2
+    appVersion: "2.476"
+    created: "2024-10-04T08:00:35.643033274Z"
+    dependencies:
+    - import-values:
+      - defaults
+      name: demo-library
+      repository: https://alex-dovnar.in/devopsdays-kz-2024
+      version: ~>0
+    description: Demo Jenkins
+    digest: a38adfcafd819af5946eac4cc5ec6578041c644ca7098edb186e3772bc4b977a
+    name: demo-app-jenkins
+    type: application
+    urls:
+    - https://github.com/DovnarAlexander/devopsdays-kz-2024/releases/download/demo-app-jenkins-0.0.1/demo-app-jenkins-0.0.1.tgz
+    version: 0.0.1
   demo-application-1:
   - apiVersion: v2
     appVersion: 1.27.1
@@ -31,4 +48,4 @@ entries:
     urls:
     - https://github.com/DovnarAlexander/devopsdays-kz-2024/releases/download/demo-library-0.0.1/demo-library-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-04T07:48:52.165960879Z"
+generated: "2024-10-04T08:00:35.643042752Z"
