@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  demo-library:
+  - apiVersion: v2
+    created: "2024-10-04T07:42:33.886840275Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.22.0
+    description: Demo library helm chart
+    digest: 58200bfd5fe614d9e30defdcea0bb64788e85faf67da2c80e49a952f20c93834
+    name: demo-library
+    type: library
+    urls:
+    - https://github.com/DovnarAlexander/devopsdays-kz-2024/releases/download/demo-library-0.0.1/demo-library-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-10-04T07:42:33.886849752Z"
